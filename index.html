@@ -1,158 +1,446 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kaustubh Singh - CSE Student, AI/ML Enthusiast and Python Developer" />
-  <title>Kaustubh Singh | Portfolio</title>
-  <style>
-    :root {
-      --bg: #0d1117;
-      --card: #161b22;
-      --border: #30363d;
-      --text: #e6edf3;
-      --muted: #9da7b3;
-      --accent: #58a6ff;
-      --green: #3fb950;
-    }
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .container { width: min(1050px, 92%); margin: auto; }
-    header {
-      padding: 90px 0 65px;
-      text-align: center;
-      border-bottom: 1px solid var(--border);
-    }
-    h1 { margin: 0; font-size: clamp(2.4rem, 7vw, 4.5rem); }
-    header h2 { color: var(--accent); font-weight: 500; margin: 8px 0 20px; }
-    header p { max-width: 760px; margin: auto; color: var(--muted); }
-    section { padding: 55px 0; border-bottom: 1px solid var(--border); }
-    h2 { margin-top: 0; font-size: 1.8rem; }
-    h3 { margin-bottom: 8px; }
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 22px;
-    }
-    .tags { display: flex; flex-wrap: wrap; gap: 9px; }
-    .tag {
-      background: #21262d;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-      padding: 5px 11px;
-      font-size: .9rem;
-    }
-    .buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 28px;
-    }
-    .button {
-      display: inline-block;
-      padding: 10px 17px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
-      background: var(--card);
-      color: var(--text);
-      font-weight: 600;
-    }
-    .button:hover { border-color: var(--accent); text-decoration: none; }
-    ul { padding-left: 20px; }
-    .achievement { color: var(--green); font-weight: 700; }
-    .stats img {
-      max-width: 100%;
-      margin: 8px 8px 8px 0;
-    }
-    blockquote {
-      margin: 20px 0 0;
-      padding: 12px 18px;
-      border-left: 4px solid var(--accent);
-      background: var(--card);
-      color: var(--muted);
-    }
-    footer { text-align: center; padding: 35px 0; color: var(--muted); }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Kaustubh Singh — CSE Student, AI/ML Enthusiast and Python Developer" />
+<title>Kaustubh Singh · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0e14;
+    --surface:#11151d;
+    --surface-2:#161c26;
+    --border:#1f2733;
+    --text:#e8e6df;
+    --muted:#7b8794;
+    --accent:#ffb454;   /* amber — keywords */
+    --accent2:#7ee3b0;  /* mint — strings */
+    --accent3:#7dd3fc;  /* soft blue — names */
+    --danger:#ff5f56;
+    --warn:#ffbd2e;
+    --ok:#27c93f;
+    --mono:'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    --sans:'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:64px;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.7;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(255,180,84,0.06), transparent 40%),
+      radial-gradient(circle at 85% 20%, rgba(126,227,176,0.05), transparent 40%);
+  }
+  a{color:var(--accent3); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  ::selection{ background: rgba(255,180,84,0.25); }
+  :focus-visible{ outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+
+  .container{ width:min(920px, 92%); margin:0 auto; }
+
+  /* ---------- Tab bar ---------- */
+  .tabbar{
+    position:sticky; top:0; z-index:50;
+    display:flex;
+    gap:2px;
+    background:var(--surface);
+    border-bottom:1px solid var(--border);
+    overflow-x:auto;
+    scrollbar-width:none;
+    padding:0 8px;
+  }
+  .tabbar::-webkit-scrollbar{ display:none; }
+  .tabbar button{
+    flex:0 0 auto;
+    display:flex; align-items:center; gap:8px;
+    background:transparent;
+    border:none;
+    border-top:2px solid transparent;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:0.82rem;
+    padding:12px 16px 10px;
+    cursor:pointer;
+    white-space:nowrap;
+    transition:color .2s ease, border-color .2s ease, background .2s ease;
+  }
+  .tabbar button .dot{
+    width:7px; height:7px; border-radius:50%;
+    background:var(--border);
+    transition:background .2s ease;
+    flex-shrink:0;
+  }
+  .tabbar button:hover{ color:var(--text); background:var(--surface-2); }
+  .tabbar button.active{
+    color:var(--text);
+    border-top-color:var(--accent);
+    background:var(--bg);
+  }
+  .tabbar button.active .dot{ background:var(--accent); }
+
+  main{ padding-top:8px; }
+
+  section{
+    padding:70px 0 40px;
+    border-bottom:1px solid var(--border);
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .6s ease, transform .6s ease;
+  }
+  section.in-view{ opacity:1; transform:translateY(0); }
+  section:first-of-type{ padding-top:48px; }
+
+  .comment{
+    font-family:var(--mono);
+    color:var(--muted);
+    font-size:1.05rem;
+    font-weight:500;
+    margin:0 0 28px;
+    letter-spacing:.2px;
+  }
+  .comment .hash{ color:#4b5563; }
+
+  /* ---------- Hero / code window ---------- */
+  .hero{ border-bottom:1px solid var(--border); }
+  .code-window{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 60px -30px rgba(0,0,0,0.6);
+  }
+  .code-window-head{
+    display:flex; align-items:center; gap:10px;
+    padding:12px 16px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .code-window-head .traffic{ display:flex; gap:7px; }
+  .code-window-head .traffic span{ width:11px; height:11px; border-radius:50%; display:block; }
+  .code-window-head .traffic span:nth-child(1){ background:var(--danger); }
+  .code-window-head .traffic span:nth-child(2){ background:var(--warn); }
+  .code-window-head .traffic span:nth-child(3){ background:var(--ok); }
+  .code-window-head .filename{
+    font-family:var(--mono); font-size:0.8rem; color:var(--muted); margin-left:6px;
+  }
+
+  .code-body{
+    margin:0;
+    padding:22px 24px 26px;
+    overflow-x:auto;
+    font-family:var(--mono);
+    font-size:0.95rem;
+  }
+  .code-line{ display:flex; }
+  .ln{
+    color:#3a4451;
+    width:28px;
+    flex:0 0 28px;
+    text-align:right;
+    margin-right:20px;
+    user-select:none;
+  }
+  .kw{ color:var(--accent); }
+  .str{ color:var(--accent2); }
+  .name{ color:var(--accent3); }
+  .fn{ color:#d2a8ff; }
+  .cm{ color:var(--muted); font-style:italic; }
+
+  .terminal-out{
+    margin-top:18px;
+    font-family:var(--mono);
+    font-size:0.95rem;
+    color:var(--accent2);
+  }
+  .terminal-out::before{ content:"❯ "; color:var(--muted); }
+  .cursor{
+    display:inline-block; width:8px; height:1em; background:var(--accent);
+    margin-left:2px; vertical-align:text-bottom;
+    animation:blink 1s steps(1) infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  h1.name-heading{
+    font-family:var(--mono);
+    font-size:clamp(2rem, 6vw, 3.1rem);
+    font-weight:700;
+    margin:34px 0 6px;
+    letter-spacing:-0.5px;
+  }
+  .role-line{
+    color:var(--muted);
+    font-size:1.05rem;
+    margin:0 0 26px;
+    max-width:640px;
+  }
+
+  .buttons{
+    display:flex; flex-wrap:wrap; gap:10px;
+    margin-top:8px;
+  }
+  .button{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 16px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    color:var(--text);
+    font-family:var(--mono);
+    font-size:0.85rem;
+    font-weight:500;
+    transition:border-color .2s ease, transform .2s ease, background .2s ease;
+  }
+  .button:hover{
+    border-color:var(--accent);
+    background:var(--surface-2);
+    text-decoration:none;
+    transform:translateY(-2px);
+  }
+  .button .prefix{ color:var(--accent); }
+
+  /* ---------- About ---------- */
+  .about-list{ list-style:none; margin:0; padding:0; max-width:680px; }
+  .about-list li{
+    display:flex; gap:14px;
+    padding:10px 0;
+    border-bottom:1px dashed var(--border);
+    font-size:1rem;
+  }
+  .about-list li:last-child{ border-bottom:none; }
+  .about-list .bullet{ color:var(--accent); font-family:var(--mono); flex-shrink:0; }
+  .achievement{ color:var(--accent2); font-weight:600; }
+
+  /* ---------- Grid / cards ---------- */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    gap:16px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:22px;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  .card:hover{ border-color:var(--accent3); transform:translateY(-3px); }
+  .card h3{
+    margin:0 0 14px;
+    font-size:1rem;
+    font-family:var(--mono);
+    color:var(--accent3);
+  }
+  .card h3::before{ content:"\"" ; color:var(--muted); }
+  .card h3::after{ content:"\"" ; color:var(--muted); }
+
+  .tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .tag{
+    background:var(--surface-2);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:5px 10px;
+    font-size:0.82rem;
+    font-family:var(--mono);
+    color:var(--text);
+  }
+
+  /* ---------- Projects ---------- */
+  .project-card{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:26px 26px 22px;
+    margin-bottom:18px;
+  }
+  .project-def{
+    font-family:var(--mono);
+    font-size:0.98rem;
+    margin:0 0 4px;
+  }
+  .project-doc{
+    font-family:var(--mono);
+    color:var(--muted);
+    font-size:0.88rem;
+    font-style:italic;
+    margin:2px 0 16px;
+    padding-left:22px;
+  }
+  .project-card ul{
+    margin:0 0 14px;
+    padding-left:0;
+    list-style:none;
+  }
+  .project-card ul li{
+    padding-left:22px;
+    position:relative;
+    font-size:0.95rem;
+    margin-bottom:6px;
+    color:var(--text);
+  }
+  .project-card ul li::before{
+    content:"→";
+    position:absolute; left:0; color:var(--accent);
+  }
+  .stack-line{
+    font-family:var(--mono);
+    font-size:0.82rem;
+    color:var(--accent2);
+    padding-left:22px;
+  }
+
+  /* ---------- Achievements ---------- */
+  .achieve-card{
+    display:flex; align-items:flex-start; gap:16px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-left:3px solid var(--accent2);
+    border-radius:8px;
+    padding:20px 22px;
+  }
+  .achieve-card .icon{ font-size:1.6rem; line-height:1; }
+
+  /* ---------- Stats ---------- */
+  .stats img{
+    max-width:100%;
+    border-radius:8px;
+    border:1px solid var(--border);
+    margin:8px 8px 8px 0;
+  }
+
+  /* ---------- Focus / footer ---------- */
+  blockquote{
+    margin:24px 0 0;
+    padding:16px 20px;
+    border-left:3px solid var(--accent);
+    background:var(--surface);
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:0.92rem;
+    border-radius:0 8px 8px 0;
+  }
+  blockquote::before{ content:"# "; color:#4b5563; }
+
+  footer{
+    text-align:center;
+    padding:40px 0 50px;
+    color:var(--muted);
+    font-family:var(--mono);
+    font-size:0.85rem;
+  }
+  footer .heart{ color:var(--accent); }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation:none !important; transition:none !important; }
+    section{ opacity:1; transform:none; }
+  }
+
+  @media (max-width:600px){
+    .code-body{ font-size:0.82rem; }
+    .ln{ width:20px; flex:0 0 20px; margin-right:12px; }
+  }
+</style>
 </head>
 <body>
-  <header>
+
+  <nav class="tabbar" id="tabbar" aria-label="Section navigation">
+    <button data-target="#hero" class="active"><span class="dot"></span>hero.py</button>
+    <button data-target="#about"><span class="dot"></span>about.py</button>
+    <button data-target="#stack"><span class="dot"></span>stack.json</button>
+    <button data-target="#projects"><span class="dot"></span>projects.py</button>
+    <button data-target="#achievements"><span class="dot"></span>achievements.md</button>
+    <button data-target="#stats"><span class="dot"></span>stats.sh</button>
+    <button data-target="#focus"><span class="dot"></span>focus.txt</button>
+  </nav>
+
+  <main>
     <div class="container">
-      <h1>Hi 👋, I'm Kaustubh Singh</h1>
-      <h2>Computer Science Engineering Student | AI/ML Enthusiast | Python Developer</h2>
-      <p>
-        I'm a B.Tech Computer Science & Engineering student at ABES Engineering College, Ghaziabad,
-        passionate about Artificial Intelligence, Machine Learning, Python development, and building
-        intelligent real-world applications.
-      </p>
-      <div class="buttons">
-        <a class="button" href="https://github.com/Kaustubh192006" target="_blank" rel="noopener">GitHub</a>
-        <a class="button" href="https://www.linkedin.com/in/kaustubh-singh-bb0964359/" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="button" href="https://leetcode.com/u/bMd9cp6O4b/" target="_blank" rel="noopener">LeetCode</a>
-        <a class="button" href="https://www.hackerrank.com/profile/kaustubh192006" target="_blank" rel="noopener">HackerRank</a>
-        <a class="button" href="https://www.codechef.com/users/kaustubh019" target="_blank" rel="noopener">CodeChef</a>
-      </div>
-    </div>
-  </header>
 
-  <main class="container">
-    <section>
-      <h2>🚀 About Me</h2>
-      <ul>
-        <li>🎓 Pursuing B.Tech in Computer Science & Engineering</li>
-        <li>🤖 Exploring Artificial Intelligence & Machine Learning</li>
-        <li>🐍 <span class="achievement">5-Star Python Coder on HackerRank</span></li>
-        <li>🧠 Currently strengthening DSA & Problem Solving</li>
-        <li>⚙️ Interested in AI-powered applications and automation</li>
-        <li>💡 I enjoy turning ideas into practical software projects</li>
-        <li>📈 Continuously learning and improving my development skills</li>
-      </ul>
-    </section>
+      <section id="hero" class="hero">
+        <div class="code-window">
+          <div class="code-window-head">
+            <div class="traffic"><span></span><span></span><span></span></div>
+            <span class="filename">developer.py</span>
+          </div>
+          <pre class="code-body"><code
+><span class="code-line"><span class="ln">1</span><span class="kw">class</span> <span class="name">Developer</span>:</span>
+<span class="code-line"><span class="ln">2</span>    <span class="kw">def</span> <span class="fn">__init__</span>(<span class="kw">self</span>):</span>
+<span class="code-line"><span class="ln">3</span>        <span class="kw">self</span>.name = <span class="str">"Kaustubh Singh"</span></span>
+<span class="code-line"><span class="ln">4</span>        <span class="kw">self</span>.role = <span class="str">"CSE Student @ ABES Engineering College"</span></span>
+<span class="code-line"><span class="ln">5</span>        <span class="kw">self</span>.focus = [<span class="str">"AI/ML"</span>, <span class="str">"Python"</span>, <span class="str">"DSA"</span>, <span class="str">"Automation"</span>]</span>
+<span class="code-line"><span class="ln">6</span>        <span class="kw">self</span>.badge = <span class="str">"5⭐ Python Coder — HackerRank"</span></span>
+<span class="code-line"><span class="ln">7</span></span>
+<span class="code-line"><span class="ln">8</span>    <span class="kw">def</span> <span class="fn">say_hello</span>(<span class="kw">self</span>):</span>
+<span class="code-line"><span class="ln">9</span>        <span class="cm"># turning ideas into practical software</span></span>
+<span class="code-line"><span class="ln">10</span>        <span class="kw">return</span> <span class="str">"Building intelligent software, one commit at a time."</span></span>
+<span class="code-line"><span class="ln">11</span></span>
+<span class="code-line"><span class="ln">12</span>kaustubh = <span class="name">Developer</span>()</span>
+<span class="code-line"><span class="ln">13</span><span class="fn">print</span>(kaustubh.say_hello())</span
+></code></pre>
+        </div>
 
-    <section>
-      <h2>🛠️ Tech Stack</h2>
-      <div class="grid">
-        <div class="card">
-          <h3>Languages</h3>
-          <div class="tags"><span class="tag">Python</span><span class="tag">C</span><span class="tag">Java</span></div>
-        </div>
-        <div class="card">
-          <h3>Tools & Technologies</h3>
-          <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">OpenAI API</span><span class="tag">PyAutoGUI</span></div>
-        </div>
-        <div class="card">
-          <h3>Core Concepts</h3>
-          <div class="tags"><span class="tag">DSA</span><span class="tag">OOP</span><span class="tag">Operating Systems</span><span class="tag">File I/O</span><span class="tag">Desktop Automation</span><span class="tag">Speech Processing</span></div>
-        </div>
-        <div class="card">
-          <h3>Currently Learning</h3>
-          <div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Machine Learning</span><span class="tag">DSA</span><span class="tag">Problem Solving</span></div>
-        </div>
-      </div>
-    </section>
+        <p class="terminal-out">Building intelligent software, one commit at a time.<span class="cursor"></span></p>
 
-    <section>
-      <h2>🚀 Featured Projects</h2>
-      <div class="grid">
-        <article class="card">
-          <h3>🤖 J.A.R.V.I.S — AI-Powered Voice Assistant</h3>
-          <p><strong>Python | OpenAI API | SpeechRecognition | pyttsx3 | Automation</strong></p>
-          <p>A voice-activated desktop assistant capable of processing natural-language commands and automating everyday computer tasks.</p>
+        <h1 class="name-heading">Kaustubh Singh</h1>
+        <p class="role-line">Computer Science Engineering student, AI/ML enthusiast, and Python developer — I like turning ideas into working software and learning by building.</p>
+
+        <div class="buttons">
+          <a class="button" href="https://github.com/Kaustubh192006" target="_blank" rel="noopener"><span class="prefix">↳</span>GitHub</a>
+          <a class="button" href="https://www.linkedin.com/in/kaustubh-singh-bb0964359/" target="_blank" rel="noopener"><span class="prefix">↳</span>LinkedIn</a>
+          <a class="button" href="https://leetcode.com/u/bMd9cp6O4b/" target="_blank" rel="noopener"><span class="prefix">↳</span>LeetCode</a>
+          <a class="button" href="https://www.hackerrank.com/profile/kaustubh192006" target="_blank" rel="noopener"><span class="prefix">↳</span>HackerRank</a>
+          <a class="button" href="https://www.codechef.com/users/kaustubh019" target="_blank" rel="noopener"><span class="prefix">↳</span>CodeChef</a>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2 class="comment"><span class="hash">#</span> 🚀 about.py</h2>
+        <ul class="about-list">
+          <li><span class="bullet">01</span> Pursuing B.Tech in Computer Science & Engineering</li>
+          <li><span class="bullet">02</span> Exploring Artificial Intelligence & Machine Learning</li>
+          <li><span class="bullet">03</span> <span class="achievement">5-Star Python Coder on HackerRank</span></li>
+          <li><span class="bullet">04</span> Currently strengthening DSA & problem solving</li>
+          <li><span class="bullet">05</span> Interested in AI-powered applications and automation</li>
+          <li><span class="bullet">06</span> Enjoys turning ideas into practical software projects</li>
+          <li><span class="bullet">07</span> Continuously learning and improving development skills</li>
+        </ul>
+      </section>
+
+      <section id="stack">
+        <h2 class="comment"><span class="hash">#</span> 🛠️ stack.json</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>languages</h3>
+            <div class="tags"><span class="tag">Python</span><span class="tag">C</span><span class="tag">Java</span></div>
+          </div>
+          <div class="card">
+            <h3>tools</h3>
+            <div class="tags"><span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">VS Code</span><span class="tag">OpenAI API</span><span class="tag">PyAutoGUI</span></div>
+          </div>
+          <div class="card">
+            <h3>core_concepts</h3>
+            <div class="tags"><span class="tag">DSA</span><span class="tag">OOP</span><span class="tag">Operating Systems</span><span class="tag">File I/O</span><span class="tag">Desktop Automation</span><span class="tag">Speech Processing</span></div>
+          </div>
+          <div class="card">
+            <h3>currently_learning</h3>
+            <div class="tags"><span class="tag">Artificial Intelligence</span><span class="tag">Machine Learning</span><span class="tag">DSA</span><span class="tag">Problem Solving</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h2 class="comment"><span class="hash">#</span> 🚀 projects.py</h2>
+
+        <article class="project-card">
+          <p class="project-def"><span class="kw">def</span> <span class="fn">jarvis</span>():</p>
+          <p class="project-doc">"""🤖 J.A.R.V.I.S — AI-powered voice assistant"""</p>
+          <p class="stack-line">stack: Python · OpenAI API · SpeechRecognition · pyttsx3 · Automation</p>
           <ul>
             <li>Real-time voice command recognition</li>
             <li>OpenAI-powered conversational responses</li>
@@ -161,10 +449,11 @@
             <li>Wikipedia searches and system automation</li>
           </ul>
         </article>
-        <article class="card">
-          <h3>💬 Auto Reply AI Chatbot</h3>
-          <p><strong>Python | OpenAI API | PyAutoGUI | Desktop Automation</strong></p>
-          <p>An intelligent desktop automation bot that monitors incoming messages and generates context-aware responses using AI.</p>
+
+        <article class="project-card">
+          <p class="project-def"><span class="kw">def</span> <span class="fn">auto_reply_bot</span>():</p>
+          <p class="project-doc">"""💬 Auto Reply AI Chatbot — context-aware desktop automation"""</p>
+          <p class="stack-line">stack: Python · OpenAI API · PyAutoGUI · Desktop Automation</p>
           <ul>
             <li>AI-generated human-like responses</li>
             <li>Context-aware conversation handling</li>
@@ -173,42 +462,74 @@
             <li>Dynamic responses without hardcoded conversation trees</li>
           </ul>
         </article>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>🏆 Achievements</h2>
-      <div class="card">
-        <h3 class="achievement">⭐ 5-Star Python Coder — HackerRank</h3>
-        <p>Achieved a 5-Star Python rating by consistently solving programming and algorithmic challenges.</p>
-      </div>
-    </section>
+      <section id="achievements">
+        <h2 class="comment"><span class="hash">#</span> 🏆 achievements.md</h2>
+        <div class="achieve-card">
+          <span class="icon">⭐</span>
+          <div>
+            <h3 style="margin:0 0 6px; font-family:var(--mono); color:var(--accent2); font-size:1rem;">5-Star Python Coder — HackerRank</h3>
+            <p style="margin:0; color:var(--muted);">Achieved a 5-Star Python rating by consistently solving programming and algorithmic challenges.</p>
+          </div>
+        </div>
+      </section>
 
-    <section class="stats">
-      <h2>📊 GitHub Stats</h2>
-      <img src="https://github-readme-stats.vercel.app/api?username=Kaustubh192006&show_icons=true&theme=tokyonight" alt="Kaustubh's GitHub stats">
-      <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaustubh192006&layout=compact&theme=tokyonight" alt="Kaustubh's top languages">
-      <img src="https://streak-stats.demolab.com/?user=Kaustubh192006&theme=tokyonight" alt="Kaustubh's GitHub streak">
-    </section>
+      <section id="stats" class="stats">
+        <h2 class="comment"><span class="hash">#</span> 📊 stats.sh</h2>
+        <img src="https://github-readme-stats.vercel.app/api?username=Kaustubh192006&show_icons=true&theme=tokyonight" alt="Kaustubh's GitHub stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaustubh192006&layout=compact&theme=tokyonight" alt="Kaustubh's top languages">
+        <img src="https://streak-stats.demolab.com/?user=Kaustubh192006&theme=tokyonight" alt="Kaustubh's GitHub streak">
+      </section>
 
-    <section>
-      <h2>🎯 Current Focus</h2>
-      <div class="tags">
-        <span class="tag">🤖 Artificial Intelligence & Machine Learning</span>
-        <span class="tag">🐍 Python Development</span>
-        <span class="tag">🧩 Data Structures & Algorithms</span>
-        <span class="tag">💡 Problem Solving</span>
-        <span class="tag">⚙️ AI Automation Projects</span>
-      </div>
-      <blockquote>
-        Learning by building, improving through problem-solving, and working toward creating intelligent software that solves real-world problems.
-      </blockquote>
-    </section>
+      <section id="focus">
+        <h2 class="comment"><span class="hash">#</span> 🎯 focus.txt</h2>
+        <div class="tags">
+          <span class="tag">🤖 Artificial Intelligence & Machine Learning</span>
+          <span class="tag">🐍 Python Development</span>
+          <span class="tag">🧩 Data Structures & Algorithms</span>
+          <span class="tag">💡 Problem Solving</span>
+          <span class="tag">⚙️ AI Automation Projects</span>
+        </div>
+        <blockquote>Learning by building, improving through problem-solving, and working toward creating intelligent software that solves real-world problems.</blockquote>
+      </section>
+
+    </div>
   </main>
 
   <footer>
-    ⭐ Thanks for visiting my portfolio!<br>
-    © 2026 Kaustubh Singh
+    <span class="heart">⭐</span> Thanks for visiting my portfolio! · © 2026 Kaustubh Singh
   </footer>
+
+  <script>
+    // Tab bar click -> smooth scroll
+    const tabs = document.querySelectorAll('.tabbar button');
+    tabs.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = document.querySelector(btn.dataset.target);
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Scroll-spy: highlight active tab + reveal sections
+    const sections = document.querySelectorAll('main section');
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if(prefersReduced){
+      sections.forEach(s => s.classList.add('in-view'));
+    }
+
+    const spyObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          if(!prefersReduced) entry.target.classList.add('in-view');
+          const id = '#' + entry.target.id;
+          tabs.forEach(btn => btn.classList.toggle('active', btn.dataset.target === id));
+        }
+      });
+    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+
+    sections.forEach(s => spyObserver.observe(s));
+  </script>
 </body>
 </html>
