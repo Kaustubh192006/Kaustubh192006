@@ -150,48 +150,121 @@
 
   /* ---------------- Hero ---------------- */
   .hero{
-    padding:170px 0 100px;
+    padding:80px 0;
     position:relative;
+  }
+  .hero-dark{
+    position:relative;
+    background:radial-gradient(120% 140% at 50% 30%, #1a1508 0%, #0b0b0f 55%, #0b0b0f 100%);
+    border-radius:26px;
     overflow:hidden;
+    padding:90px 44px 70px;
+    box-shadow:0 40px 90px -40px rgba(0,0,0,0.55);
+  }
+  .hero-glow{
+    position:absolute;
+    width:640px; height:640px;
+    left:50%; top:38%;
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(255,150,50,0.55), rgba(255,110,40,0.18) 45%, transparent 72%);
+    filter:blur(20px);
+    animation:glow-pulse 5s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes glow-pulse{
+    0%,100%{ opacity:.85; transform:translate(-50%,-50%) scale(1); }
+    50%{ opacity:1; transform:translate(-50%,-50%) scale(1.08); }
+  }
+  .flow-lines{
+    position:absolute; inset:0; width:100%; height:100%;
+    pointer-events:none;
+  }
+  .flow-lines path{
+    fill:none;
+    stroke:url(#flowGrad);
+    stroke-width:2.5;
+    stroke-linecap:round;
+    filter:drop-shadow(0 0 6px rgba(255,140,50,0.65));
+    animation:flow-drift 8s ease-in-out infinite;
+  }
+  .flow-lines path:nth-child(2){ animation-duration:10s; animation-direction:reverse; opacity:.75; }
+  .flow-lines path:nth-child(3){ animation-duration:12s; opacity:.55; }
+  @keyframes flow-drift{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-14px); }
+  }
+
+  .hero-glass{
+    position:relative;
+    background:rgba(255,255,255,0.06);
+    backdrop-filter:blur(18px) saturate(140%);
+    -webkit-backdrop-filter:blur(18px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.14);
+    border-radius:22px;
+    padding:38px 40px;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.25),
+      0 20px 50px -30px rgba(0,0,0,0.6);
   }
   .hero-grid{
+    position:relative; z-index:2;
     display:grid; grid-template-columns:1.05fr 0.95fr; gap:40px; align-items:center;
   }
-  .hero h1{ font-size:clamp(2.4rem, 5.4vw, 3.6rem); line-height:1.08; }
+  .hero-eyebrow-dark{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:0.8rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    color:#ffd8a8; background:rgba(255,150,50,0.12); border:1px solid rgba(255,150,50,0.3);
+    padding:7px 14px; border-radius:999px; margin-bottom:26px;
+  }
+  .hero-eyebrow-dark .node{ width:6px; height:6px; border-radius:50%; background:#ff9632; }
+
+  .hero h1{
+    font-size:clamp(2.6rem, 6vw, 4.1rem); line-height:1.05;
+    color:#fdfdfd;
+  }
+  .hero h1 .neon-name{
+    display:inline-block;
+    color:#fff;
+    text-shadow:
+      0 0 6px rgba(255,255,255,0.5),
+      0 0 22px rgba(255,140,50,0.85),
+      0 0 46px rgba(255,110,40,0.55),
+      0 0 80px rgba(255,90,30,0.35);
+  }
   .hero h1 .accent-text{
-    background:linear-gradient(90deg, var(--accent), var(--coral), var(--accent));
-    background-size:200% auto;
+    background:linear-gradient(90deg, #ff9632, #ffd8a8, #ff6b57, #ff9632);
+    background-size:300% auto;
     -webkit-background-clip:text; background-clip:text; color:transparent;
     animation:shine 6s linear infinite;
   }
-  @keyframes shine{ to{ background-position:-200% center; } }
-  .hero-role{ color:var(--muted); font-size:1.15rem; font-weight:500; margin:18px 0 16px; }
-  .hero-pitch{ color:var(--muted); max-width:520px; font-size:1.02rem; }
+  @keyframes shine{ to{ background-position:-300% center; } }
+  .hero-role{ color:#c7c9d6; font-size:1.15rem; font-weight:500; margin:20px 0 16px; }
+  .hero-pitch{ color:#9a9ca9; max-width:520px; font-size:1.02rem; }
   .hero-ctas{ display:flex; flex-wrap:wrap; gap:14px; margin-top:32px; }
   .btn{
     display:inline-flex; align-items:center; gap:8px;
     padding:13px 22px; border-radius:9px; font-weight:600; font-size:0.95rem;
     transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
   }
-  .btn-primary{ background:var(--accent); color:#fff; position:relative; overflow:hidden; }
-  .btn-primary:hover{ background:#4238d6; text-decoration:none; transform:translateY(-2px); box-shadow:0 10px 24px -10px rgba(79,70,229,0.5); }
+  .btn-primary{ background:linear-gradient(90deg, #ff9632, #ff6b57); color:#1a0e00; position:relative; overflow:hidden; }
+  .btn-primary:hover{ text-decoration:none; transform:translateY(-2px); box-shadow:0 14px 28px -10px rgba(255,120,40,0.55); }
   .btn-primary::after{
     content:""; position:absolute; top:0; left:-60%; width:40%; height:100%;
-    background:linear-gradient(120deg, transparent, rgba(255,255,255,.4), transparent);
+    background:linear-gradient(120deg, transparent, rgba(255,255,255,.5), transparent);
     transform:skewX(-20deg); transition:left .5s ease;
   }
   .btn-primary:hover::after{ left:120%; }
-  .btn-secondary{ background:transparent; color:var(--ink); border:1.5px solid var(--border); }
-  .btn-secondary:hover{ border-color:var(--ink); text-decoration:none; transform:translateY(-2px); }
+  .btn-secondary{ background:rgba(255,255,255,0.04); color:#fff; border:1.5px solid rgba(255,255,255,0.18); }
+  .btn-secondary:hover{ border-color:#ff9632; text-decoration:none; transform:translateY(-2px); }
 
   .hero-socials{ display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
   .hero-socials a{
-    font-size:0.86rem; font-weight:600; color:var(--muted);
+    font-size:0.86rem; font-weight:600; color:#9a9ca9;
     padding:8px 0; border-bottom:1px solid transparent;
   }
-  .hero-socials a:hover{ color:var(--ink); border-color:var(--ink); text-decoration:none; }
+  .hero-socials a:hover{ color:#ff9632; border-color:#ff9632; text-decoration:none; }
 
-  .hero-visual{ position:relative; display:flex; justify-content:center; transition:transform .3s ease-out; }
+  .hero-visual{ position:relative; z-index:2; display:flex; justify-content:center; transition:transform .3s ease-out; }
   .hero-visual svg{ width:100%; max-width:420px; height:auto; }
   .nn-node{ animation:pulse 3.2s ease-in-out infinite; }
   .nn-node.n2{ animation-delay:.5s; }
@@ -201,7 +274,39 @@
     0%,100%{ opacity:.55; }
     50%{ opacity:1; }
   }
-  .nn-caption{ font-family:var(--sans); font-size:9px; letter-spacing:.14em; fill:var(--muted); text-transform:uppercase; }
+  .nn-caption{ font-family:var(--sans); font-size:9px; letter-spacing:.14em; fill:#8b8d9c; text-transform:uppercase; }
+
+  @media (max-width:600px){
+    .hero-dark{ padding:70px 22px 50px; border-radius:20px; }
+  }
+
+  /* ---------------- About (Neumorphism) ---------------- */
+  #about{
+    background:#eceef3;
+    border-radius:26px;
+    margin:20px auto;
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+  #about .about-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start; }
+  #about .about-list{ list-style:none; margin:0; padding:0; }
+  #about .about-list li{
+    display:flex; gap:14px; padding:16px 20px; font-size:1rem;
+    background:#eceef3; border-radius:14px; margin-bottom:12px;
+    box-shadow: 7px 7px 14px #cfd1d8, -7px -7px 14px #ffffff;
+  }
+  #about .about-list li:first-child{ padding-top:16px; }
+  #about .about-list .mark{ color:var(--accent); flex-shrink:0; font-size:1.1rem; }
+  #about .achievement{ color:var(--accent); font-weight:700; }
+
+  #about .fact-card{
+    background:#eceef3; border:none; border-radius:20px; padding:30px;
+    box-shadow: 9px 9px 18px #cfd1d8, -9px -9px 18px #ffffff;
+  }
+  #about .fact-row{ display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px dashed #d6d8e0; }
+  #about .fact-row:last-child{ border-bottom:none; }
+  #about .fact-row dt{ color:var(--muted); font-size:0.9rem; }
+  #about .fact-row dd{ margin:0; font-weight:600; font-size:0.92rem; text-align:right; }
 
   /* ---------------- About ---------------- */
   .about-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start; }
@@ -222,6 +327,34 @@
   .fact-row dt{ color:var(--muted); font-size:0.9rem; }
   .fact-row dd{ margin:0; font-weight:600; font-size:0.92rem; text-align:right; }
 
+  /* ---------------- Skills (Gradient Mesh) ---------------- */
+  #skills{
+    position:relative;
+    border-radius:26px;
+    margin:20px auto;
+    padding-top:70px;
+    padding-bottom:70px;
+    overflow:hidden;
+    background:
+      radial-gradient(at 15% 20%, rgba(79,70,229,0.55) 0px, transparent 50%),
+      radial-gradient(at 85% 15%, rgba(255,107,87,0.5) 0px, transparent 50%),
+      radial-gradient(at 20% 85%, rgba(126,227,176,0.45) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(255,180,84,0.45) 0px, transparent 50%),
+      #12131a;
+  }
+  #skills .section-head h2, #skills .section-head p{ color:#fff; }
+  #skills .section-head p{ color:rgba(255,255,255,0.75); }
+  #skills .card{
+    background:rgba(255,255,255,0.1);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(255,255,255,0.18);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.2);
+  }
+  #skills .card:hover{ border-color:rgba(255,255,255,0.35); box-shadow:inset 0 1px 0 rgba(255,255,255,0.3), 0 20px 40px -28px rgba(0,0,0,0.5); }
+  #skills .card h3{ color:#fff; }
+  #skills .tag{ background:rgba(255,255,255,0.14); color:#fff; }
+
   /* ---------------- Skills ---------------- */
   .grid{ display:grid; grid-template-columns:repeat(auto-fit, minmax(250px, 1fr)); gap:18px; }
   .card{
@@ -236,6 +369,33 @@
     background:var(--accent-soft); color:var(--accent); border-radius:7px;
     padding:6px 11px; font-size:0.82rem; font-weight:600;
   }
+
+  /* ---------------- Projects (Minimalist / Flat) ---------------- */
+  #work{
+    background:#fff;
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+  #work .project-card{
+    background:#fff;
+    border:1px solid #1c1c1c;
+    border-radius:0;
+    box-shadow:none;
+    transition:none;
+    margin-bottom:22px;
+  }
+  #work .project-card:hover{ box-shadow:none; transform:none; background:#fafafa; }
+  #work .project-chrome{
+    background:#1c1c1c;
+    padding:10px 16px;
+  }
+  #work .project-chrome .dot{ display:none; }
+  #work .project-chrome span.title{ color:#fff; margin-left:0; font-family:var(--sans); font-weight:600; letter-spacing:.02em; }
+  #work .project-body{ padding:26px; }
+  #work .project-stack{ color:#1c1c1c; text-transform:uppercase; letter-spacing:.04em; font-size:0.75rem; }
+  #work .project-body ul li::before{ content:"—"; color:#1c1c1c; }
+  #work .project-link{ color:#1c1c1c; border-bottom:1px solid #1c1c1c; padding-bottom:2px; }
+  #work .project-link:hover{ text-decoration:none; }
 
   /* ---------------- Projects ---------------- */
   .project-card{
@@ -264,6 +424,42 @@
   .project-body ul li::before{ content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
   .project-link{ font-weight:600; font-size:0.9rem; }
 
+  /* ---------------- Achievements (Isometric) ---------------- */
+  #achievements{
+    padding-top:70px;
+    padding-bottom:70px;
+  }
+  #achievements .achieve-row{
+    display:flex; align-items:center; gap:40px; flex-wrap:wrap;
+  }
+  #achievements .badge-card{ flex:1 1 380px; }
+  .iso-cube{
+    width:140px; height:140px;
+    position:relative;
+    flex:0 0 140px;
+    transform-style:preserve-3d;
+  }
+  .iso-face{ position:absolute; width:100px; height:100px; }
+  .iso-top{
+    background:linear-gradient(135deg, #ffd8a8, #ffb454);
+    top:0; left:20px;
+    transform:rotate(30deg) skew(-30deg) scaleY(0.864);
+  }
+  .iso-left{
+    background:linear-gradient(135deg, #4f46e5, #6a62ec);
+    top:44px; left:0;
+    transform:skew(0deg, -30deg);
+  }
+  .iso-right{
+    background:linear-gradient(135deg, #3730a3, #4f46e5);
+    top:44px; left:40px;
+    transform:skew(0deg, 30deg);
+  }
+  .iso-star{
+    position:absolute; top:36px; left:34px; z-index:5;
+    font-size:1.6rem; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.25));
+  }
+
   /* ---------------- Achievements ---------------- */
   .badge-card{
     display:flex; align-items:center; gap:22px;
@@ -278,6 +474,38 @@
   .badge-card h3{ font-size:1.1rem; margin-bottom:6px; }
   .badge-card p{ margin:0; color:var(--muted); font-size:0.95rem; }
 
+  /* ---------------- Stats (Terminal) ---------------- */
+  #stats{
+    background:#05060a;
+    border-radius:26px;
+    margin:20px auto;
+    padding-top:60px;
+    padding-bottom:60px;
+  }
+  #stats .section-head h2, #stats .section-head p{ color:#c9d1d9; font-family:var(--mono, 'JetBrains Mono', monospace); }
+  #stats .terminal-window{
+    background:#0d1117;
+    border:1px solid #30363d;
+    border-radius:10px;
+    overflow:hidden;
+    box-shadow:0 20px 60px -30px rgba(0,0,0,0.7);
+  }
+  #stats .terminal-head{
+    display:flex; align-items:center; gap:8px;
+    background:#161b22; padding:10px 16px; border-bottom:1px solid #30363d;
+  }
+  #stats .terminal-head .dot{ width:11px; height:11px; border-radius:50%; }
+  #stats .terminal-head .dot:nth-child(1){ background:#ff5f56; }
+  #stats .terminal-head .dot:nth-child(2){ background:#ffbd2e; }
+  #stats .terminal-head .dot:nth-child(3){ background:#27c93f; }
+  #stats .terminal-head span.file{ margin-left:8px; color:#8b949e; font-size:0.8rem; font-family:monospace; }
+  #stats .terminal-body{ padding:24px; }
+  #stats .term-line{ color:#3fb950; font-family:monospace; font-size:0.85rem; margin:0 0 16px; }
+  #stats .term-line::before{ content:"$ "; color:#58a6ff; }
+  #stats .stats-card{
+    background:transparent; border-radius:0; padding:0; box-shadow:none; transform:none !important;
+  }
+
   /* ---------------- Stats ---------------- */
   .stats-card{
     background:radial-gradient(130% 160% at 85% -10%, #21243a, var(--surface-dark) 55%);
@@ -287,6 +515,44 @@
   }
   .stats-card:hover{ transform:translateY(-3px); }
   .stats-card img{ border-radius:10px; flex:1 1 260px; }
+
+  /* ---------------- Focus (Y2K / Retro-tech) ---------------- */
+  #focus{
+    background:linear-gradient(120deg, #0f0c29, #302b63, #24243e);
+    border-radius:26px; margin:20px auto;
+    padding-top:70px; padding-bottom:70px;
+    position:relative; overflow:hidden;
+  }
+  #focus::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(circle at 20% 20%, rgba(0,255,255,0.25), transparent 45%),
+               radial-gradient(circle at 80% 80%, rgba(255,0,200,0.25), transparent 45%);
+    pointer-events:none;
+  }
+  #focus .section-head{ position:relative; z-index:2; }
+  #focus .section-head h2{
+    background:linear-gradient(90deg, #00fff0, #ff00e0, #00fff0);
+    background-size:200% auto;
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    animation:shine 5s linear infinite;
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+  }
+  #focus .tags{ position:relative; z-index:2; }
+  #focus .tag{
+    background:linear-gradient(135deg, rgba(0,255,240,0.18), rgba(255,0,224,0.18));
+    border:1px solid rgba(0,255,240,0.4);
+    color:#e0fbff;
+    box-shadow:0 0 14px rgba(0,255,240,0.25), inset 0 1px 0 rgba(255,255,255,0.2);
+    border-radius:999px;
+    font-weight:700;
+  }
+  #focus blockquote{
+    position:relative; z-index:2;
+    background:rgba(255,255,255,0.05);
+    border-left:3px solid #00fff0;
+    color:#d7d9ff;
+    backdrop-filter:blur(6px);
+  }
 
   /* ---------------- Focus / quote ---------------- */
   blockquote{
@@ -354,10 +620,28 @@
 <main>
 
   <section class="hero" id="hero">
-    <div class="container hero-grid">
-      <div data-reveal>
-        <span class="eyebrow"><span class="node"></span>Open to opportunities</span>
-        <h1>Kaustubh Singh<br><span class="accent-text">builds intelligent software.</span></h1>
+    <div class="container">
+    <div class="hero-dark">
+      <svg class="flow-lines" viewBox="0 0 1200 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <defs>
+          <linearGradient id="flowGrad" x1="-20%" y1="0%" x2="80%" y2="0%">
+            <animate attributeName="x1" values="-20%;120%;-20%" dur="6s" repeatCount="indefinite"/>
+            <animate attributeName="x2" values="80%;220%;80%" dur="6s" repeatCount="indefinite"/>
+            <stop offset="0%" stop-color="#ff9632"/>
+            <stop offset="50%" stop-color="#ffd8a8"/>
+            <stop offset="100%" stop-color="#ff6b57"/>
+          </linearGradient>
+        </defs>
+        <path d="M-50,140 C 200,20 320,320 560,180 S 900,60 1250,220"/>
+        <path d="M-50,340 C 250,220 380,480 620,360 S 950,260 1250,420"/>
+        <path d="M-50,460 C 220,520 420,300 680,440 S 1000,520 1250,380"/>
+      </svg>
+      <div class="hero-glow"></div>
+
+      <div class="hero-grid">
+      <div class="hero-glass" data-reveal>
+        <span class="hero-eyebrow-dark"><span class="node"></span>Open to opportunities</span>
+        <h1><span class="neon-name">Kaustubh Singh</span><br><span class="accent-text">builds intelligent software.</span></h1>
         <p class="hero-role">Computer Science Engineering Student · AI/ML Enthusiast · Python Developer</p>
         <p class="hero-pitch">B.Tech CSE student at ABES Engineering College, Ghaziabad, focused on Artificial Intelligence, Machine Learning, and Python development — turning ideas into practical, real-world applications.</p>
         <div class="hero-ctas">
@@ -373,13 +657,13 @@
         </div>
       </div>
 
-      <div class="hero-visual" data-reveal>
+      <div class="hero-visual hero-glass" data-reveal>
         <svg viewBox="0 0 420 420" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#4f46e5" stroke-opacity="0.25" stroke-width="1.4" fill="none">
+          <g stroke="#ff9632" stroke-opacity="0.3" stroke-width="1.4" fill="none">
             <path d="M70,110 L210,90 M70,110 L210,190 M70,110 L210,290 M70,210 L210,90 M70,210 L210,190 M70,210 L210,290 M70,310 L210,90 M70,310 L210,190 M70,310 L210,290"/>
             <path d="M210,90 L350,150 M210,90 L350,250 M210,190 L350,150 M210,190 L350,250 M210,290 L350,150 M210,290 L350,250"/>
           </g>
-          <g fill="#4f46e5">
+          <g fill="#ffd8a8">
             <circle class="nn-node" cx="70" cy="110" r="7"/>
             <circle class="nn-node n2" cx="70" cy="210" r="7"/>
             <circle class="nn-node n3" cx="70" cy="310" r="7"/>
@@ -389,7 +673,7 @@
             <circle class="nn-node n3" cx="210" cy="190" r="7"/>
             <circle class="nn-node n4" cx="210" cy="290" r="7"/>
           </g>
-          <g fill="#4f46e5">
+          <g fill="#ffd8a8">
             <circle class="nn-node n3" cx="350" cy="150" r="7"/>
             <circle class="nn-node n4" cx="350" cy="250" r="7"/>
           </g>
@@ -398,6 +682,8 @@
           <text x="350" y="360" text-anchor="middle" class="nn-caption">Output</text>
         </svg>
       </div>
+      </div>
+    </div>
     </div>
   </section>
 
@@ -523,12 +809,20 @@
       <div class="section-head" data-reveal>
         <h2>Achievements</h2>
       </div>
+      <div class="achieve-row">
+      <div class="iso-cube" data-reveal aria-hidden="true">
+        <div class="iso-face iso-top"></div>
+        <div class="iso-face iso-left"></div>
+        <div class="iso-face iso-right"></div>
+        <span class="iso-star">⭐</span>
+      </div>
       <div class="badge-card" data-reveal>
         <div class="badge-icon">⭐</div>
         <div>
           <h3>5-Star Python Coder — HackerRank</h3>
           <p>Achieved a 5-Star Python rating by consistently solving programming and algorithmic challenges.</p>
         </div>
+      </div>
       </div>
     </div>
   </section>
@@ -541,17 +835,26 @@
         <h2>GitHub activity</h2>
         <p>A snapshot of my open-source contributions and coding streaks.</p>
       </div>
-      <div class="stats-card" data-reveal>
-        <img src="https://github-readme-stats.vercel.app/api?username=Kaustubh192006&show_icons=true&theme=tokyonight" alt="Kaustubh's GitHub stats">
-        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaustubh192006&layout=compact&theme=tokyonight" alt="Kaustubh's top languages">
-        <img src="https://streak-stats.demolab.com/?user=Kaustubh192006&theme=tokyonight" alt="Kaustubh's GitHub streak">
+      <div class="terminal-window" data-reveal>
+        <div class="terminal-head">
+          <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          <span class="file">kaustubh@github:~</span>
+        </div>
+        <div class="terminal-body">
+          <p class="term-line">fetch --stats --user Kaustubh192006</p>
+          <div class="stats-card">
+            <img src="https://github-readme-stats.vercel.app/api?username=Kaustubh192006&show_icons=true&theme=tokyonight" alt="Kaustubh's GitHub stats">
+            <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kaustubh192006&layout=compact&theme=tokyonight" alt="Kaustubh's top languages">
+            <img src="https://streak-stats.demolab.com/?user=Kaustubh192006&theme=tokyonight" alt="Kaustubh's GitHub streak">
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <hr class="divider">
 
-  <section class="tight">
+  <section class="tight" id="focus">
     <div class="container">
       <div class="section-head" data-reveal>
         <h2>Current focus</h2>
