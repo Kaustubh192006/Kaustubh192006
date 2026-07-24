@@ -7,7 +7,7 @@
 <title>Kaustubh Singh | Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700;800&family=Caveat:wght@600;700&family=Archivo+Black&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#f7f7fa;
@@ -22,6 +22,52 @@
     --coral-soft:#fff1ee;
     --display:'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
     --sans:'Inter', ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+    --paper:#efeee6;
+    --paper-card:#f7f6ef;
+    --paper-ink:#17171a;
+    --marker:#f2e94e;
+    --script:'Caveat', cursive;
+    --heavy:'Archivo Black', var(--display);
+  }
+
+  .gp-section{
+    position:relative;
+    background:var(--paper);
+    border-radius:26px;
+    margin:20px auto;
+    padding:70px 44px;
+    overflow:hidden;
+    color:var(--paper-ink);
+  }
+  .gp-section .section-head h2, .gp-section h2{ color:var(--paper-ink); }
+  .gp-section .section-head p{ color:#5a594f; }
+  .dash-label{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--sans); font-weight:700; font-size:0.85rem;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--paper-ink);
+    margin-bottom:10px;
+  }
+  .dash-label::before{ content:"—"; color:var(--paper-ink); }
+  .script-accent{
+    font-family:var(--script); font-weight:700; font-size:1.6em;
+    color:var(--paper-ink); display:inline-block; transform:rotate(-2deg);
+  }
+  .heavy-word{ font-family:var(--heavy); font-weight:400; }
+  .marker{
+    position:relative; white-space:nowrap; padding:0 4px;
+  }
+  .marker::before{
+    content:""; position:absolute; left:-3px; right:-3px; bottom:2px; height:0.5em;
+    background:var(--marker); transform:rotate(-1.2deg); z-index:-1; border-radius:2px;
+  }
+  .tape{
+    position:absolute; width:70px; height:26px;
+    background:rgba(20,20,20,0.85);
+    box-shadow:0 3px 8px rgba(0,0,0,0.2);
+  }
+  .tape::after{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(45deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 6px);
   }
   *{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; scroll-padding-top:80px; }
@@ -280,32 +326,56 @@
     .hero-dark{ padding:70px 22px 50px; border-radius:20px; }
   }
 
-  /* ---------------- About (Neumorphism) ---------------- */
+  /* ---------------- About (Graphic Portfolio) ---------------- */
   #about{
-    background:#eceef3;
+    position:relative;
+    background:var(--paper);
     border-radius:26px;
     margin:20px auto;
-    padding-top:70px;
-    padding-bottom:70px;
+    padding-top:80px;
+    padding-bottom:80px;
+    overflow:hidden;
+    color:var(--paper-ink);
   }
-  #about .about-grid{ display:grid; grid-template-columns:1.2fr 1fr; gap:50px; align-items:start; }
+  #about .tape{ top:18px; right:60px; transform:rotate(18deg); }
+  #about .tape.tape-2{ top:auto; bottom:24px; left:40px; right:auto; transform:rotate(-14deg); }
+  #about .about-photo{
+    position:relative;
+    width:100%; max-width:230px; aspect-ratio:3/4;
+    background:#dedcd0;
+    border:1px solid rgba(0,0,0,0.15);
+    border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+    font-size:4rem;
+    margin-bottom:28px;
+    box-shadow:0 14px 30px -18px rgba(0,0,0,0.35);
+  }
+  #about .about-greeting{
+    font-family:var(--script); font-size:2rem; font-weight:700;
+    margin:0 0 6px; color:var(--paper-ink);
+  }
+  #about .about-grid{ display:grid; grid-template-columns:0.8fr 1.2fr; gap:50px; align-items:start; position:relative; z-index:2; }
   #about .about-list{ list-style:none; margin:0; padding:0; }
   #about .about-list li{
-    display:flex; gap:14px; padding:16px 20px; font-size:1rem;
-    background:#eceef3; border-radius:14px; margin-bottom:12px;
-    box-shadow: 7px 7px 14px #cfd1d8, -7px -7px 14px #ffffff;
+    display:flex; gap:14px; padding:14px 0; font-size:1rem;
+    background:transparent; border-radius:0; margin-bottom:0;
+    border-bottom:1px dashed rgba(23,23,26,0.25);
+    box-shadow:none;
   }
-  #about .about-list li:first-child{ padding-top:16px; }
-  #about .about-list .mark{ color:var(--accent); flex-shrink:0; font-size:1.1rem; }
-  #about .achievement{ color:var(--accent); font-weight:700; }
+  #about .about-list li:first-child{ padding-top:0; }
+  #about .about-list li:last-child{ border-bottom:none; }
+  #about .about-list .mark{ color:var(--paper-ink); flex-shrink:0; font-size:1.1rem; }
+  #about .achievement{ color:var(--paper-ink); font-weight:700; background:var(--marker); padding:1px 6px; border-radius:2px; }
 
   #about .fact-card{
-    background:#eceef3; border:none; border-radius:20px; padding:30px;
-    box-shadow: 9px 9px 18px #cfd1d8, -9px -9px 18px #ffffff;
+    background:var(--paper-card);
+    border:1px solid rgba(23,23,26,0.15);
+    border-radius:6px; padding:30px;
+    box-shadow:6px 6px 0 rgba(23,23,26,0.08);
   }
-  #about .fact-row{ display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px dashed #d6d8e0; }
+  #about .fact-row{ display:flex; justify-content:space-between; gap:16px; padding:13px 0; border-bottom:1px dashed rgba(23,23,26,0.2); }
   #about .fact-row:last-child{ border-bottom:none; }
-  #about .fact-row dt{ color:var(--muted); font-size:0.9rem; }
+  #about .fact-row dt{ color:#6b6a5f; font-size:0.9rem; text-transform:uppercase; letter-spacing:.04em; font-weight:700; }
   #about .fact-row dd{ margin:0; font-weight:600; font-size:0.92rem; text-align:right; }
 
   /* ---------------- About ---------------- */
@@ -370,31 +440,37 @@
     padding:6px 11px; font-size:0.82rem; font-weight:600;
   }
 
-  /* ---------------- Projects (Minimalist / Flat) ---------------- */
+  /* ---------------- Projects (Graphic Portfolio) ---------------- */
   #work{
-    background:#fff;
-    padding-top:70px;
-    padding-bottom:70px;
+    background:var(--paper);
+    color:var(--paper-ink);
+    padding-top:80px;
+    padding-bottom:80px;
+    position:relative;
+    overflow:hidden;
   }
+  #work .tape{ top:20px; left:50px; transform:rotate(-12deg); }
+  #work .container{ position:relative; z-index:2; }
   #work .project-card{
-    background:#fff;
-    border:1px solid #1c1c1c;
-    border-radius:0;
-    box-shadow:none;
-    transition:none;
+    background:var(--paper-card);
+    border:1px solid rgba(23,23,26,0.15);
+    border-radius:6px;
+    box-shadow:6px 6px 0 rgba(23,23,26,0.08);
+    transition:transform .15s ease, box-shadow .15s ease;
     margin-bottom:22px;
   }
-  #work .project-card:hover{ box-shadow:none; transform:none; background:#fafafa; }
-  #work .project-chrome{
-    background:#1c1c1c;
-    padding:10px 16px;
+  #work .project-card:hover{
+    box-shadow:9px 9px 0 rgba(23,23,26,0.1);
+    transform:translate(-2px,-2px);
   }
-  #work .project-chrome .dot{ display:none; }
-  #work .project-chrome span.title{ color:#fff; margin-left:0; font-family:var(--sans); font-weight:600; letter-spacing:.02em; }
-  #work .project-body{ padding:26px; }
-  #work .project-stack{ color:#1c1c1c; text-transform:uppercase; letter-spacing:.04em; font-size:0.75rem; }
-  #work .project-body ul li::before{ content:"—"; color:#1c1c1c; }
-  #work .project-link{ color:#1c1c1c; border-bottom:1px solid #1c1c1c; padding-bottom:2px; }
+  #work .project-chrome{
+    background:var(--paper-ink);
+    padding:12px 18px;
+  }
+  #work .project-body{ padding:30px 30px 26px; }
+  #work .project-stack{ color:#6b6a5f; font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; }
+  #work .project-body ul li::before{ content:"—"; color:var(--paper-ink); font-weight:700; }
+  #work .project-link{ color:var(--paper-ink); font-weight:700; border-bottom:1px solid var(--paper-ink); padding-bottom:1px; }
   #work .project-link:hover{ text-decoration:none; }
 
   /* ---------------- Projects ---------------- */
@@ -424,41 +500,28 @@
   .project-body ul li::before{ content:"✓"; position:absolute; left:0; color:var(--accent); font-weight:700; }
   .project-link{ font-weight:600; font-size:0.9rem; }
 
-  /* ---------------- Achievements (Isometric) ---------------- */
+  /* ---------------- Achievements (Graphic Portfolio) ---------------- */
   #achievements{
-    padding-top:70px;
-    padding-bottom:70px;
-  }
-  #achievements .achieve-row{
-    display:flex; align-items:center; gap:40px; flex-wrap:wrap;
-  }
-  #achievements .badge-card{ flex:1 1 380px; }
-  .iso-cube{
-    width:140px; height:140px;
     position:relative;
-    flex:0 0 140px;
-    transform-style:preserve-3d;
+    overflow:hidden;
+    padding-top:80px;
+    padding-bottom:80px;
+    background:var(--paper);
+    color:var(--paper-ink);
   }
-  .iso-face{ position:absolute; width:100px; height:100px; }
-  .iso-top{
-    background:linear-gradient(135deg, #ffd8a8, #ffb454);
-    top:0; left:20px;
-    transform:rotate(30deg) skew(-30deg) scaleY(0.864);
+  #achievements .tape{ top:16px; right:70px; transform:rotate(10deg); }
+  #achievements .container{ position:relative; z-index:2; }
+  #achievements .badge-card{
+    background:var(--paper-card);
+    border:1px solid rgba(23,23,26,0.15);
+    box-shadow:6px 6px 0 rgba(23,23,26,0.08);
   }
-  .iso-left{
-    background:linear-gradient(135deg, #4f46e5, #6a62ec);
-    top:44px; left:0;
-    transform:skew(0deg, -30deg);
+  #achievements .badge-icon{
+    background:var(--marker);
+    box-shadow:none;
   }
-  .iso-right{
-    background:linear-gradient(135deg, #3730a3, #4f46e5);
-    top:44px; left:40px;
-    transform:skew(0deg, 30deg);
-  }
-  .iso-star{
-    position:absolute; top:36px; left:34px; z-index:5;
-    font-size:1.6rem; filter:drop-shadow(0 4px 6px rgba(0,0,0,0.25));
-  }
+  #achievements .badge-card h3{ color:var(--paper-ink); }
+  #achievements .badge-card p{ color:#5a594f; }
 
   /* ---------------- Achievements ---------------- */
   .badge-card{
@@ -691,11 +754,27 @@
 
   <section id="about">
     <div class="container">
+      <span class="tape" aria-hidden="true"></span>
+      <span class="tape tape-2" aria-hidden="true"></span>
       <div class="section-head" data-reveal>
-        <h2>About me</h2>
+        <span class="dash-label">About</span>
+        <p class="about-greeting">Namaste ji, this is a bit about me</p>
+        <h2>Who is <span class="marker heavy-word">Kaustubh</span>?</h2>
         <p>A quick look at where I am, what I focus on, and what I've achieved so far.</p>
       </div>
       <div class="about-grid">
+        <div data-reveal>
+          <div class="about-photo" aria-hidden="true">🧑‍💻</div>
+          <div class="fact-card">
+            <dl>
+              <div class="fact-row"><dt>Education</dt><dd>B.Tech CSE, ABES Engineering College</dd></div>
+              <div class="fact-row"><dt>Location</dt><dd>Ghaziabad, India</dd></div>
+              <div class="fact-row"><dt>Focus areas</dt><dd>AI / ML, Python, Automation</dd></div>
+              <div class="fact-row"><dt>Rating</dt><dd>5★ Python — HackerRank</dd></div>
+              <div class="fact-row"><dt>Status</dt><dd>Open to internships</dd></div>
+            </dl>
+          </div>
+        </div>
         <ul class="about-list" data-reveal>
           <li><span class="mark">🎓</span> Pursuing B.Tech in Computer Science & Engineering</li>
           <li><span class="mark">🤖</span> Exploring Artificial Intelligence & Machine Learning</li>
@@ -705,15 +784,6 @@
           <li><span class="mark">💡</span> Enjoys turning ideas into practical software projects</li>
           <li><span class="mark">📈</span> Continuously learning and improving development skills</li>
         </ul>
-        <div class="fact-card" data-reveal>
-          <dl>
-            <div class="fact-row"><dt>Education</dt><dd>B.Tech CSE, ABES Engineering College</dd></div>
-            <div class="fact-row"><dt>Location</dt><dd>Ghaziabad, India</dd></div>
-            <div class="fact-row"><dt>Focus areas</dt><dd>AI / ML, Python, Automation</dd></div>
-            <div class="fact-row"><dt>Rating</dt><dd>5★ Python — HackerRank</dd></div>
-            <div class="fact-row"><dt>Status</dt><dd>Open to internships</dd></div>
-          </dl>
-        </div>
       </div>
     </div>
   </section>
@@ -755,8 +825,10 @@
 
   <section id="work">
     <div class="container">
+      <span class="tape" aria-hidden="true"></span>
       <div class="section-head" data-reveal>
-        <h2>Featured projects</h2>
+        <span class="dash-label">Work</span>
+        <h2><span class="marker heavy-word">Featured</span> Projects</h2>
         <p>A couple of things I've built to explore AI, automation, and real-world problem solving.</p>
       </div>
 
@@ -806,15 +878,10 @@
 
   <section id="achievements" class="tight">
     <div class="container">
+      <span class="tape" aria-hidden="true"></span>
       <div class="section-head" data-reveal>
-        <h2>Achievements</h2>
-      </div>
-      <div class="achieve-row">
-      <div class="iso-cube" data-reveal aria-hidden="true">
-        <div class="iso-face iso-top"></div>
-        <div class="iso-face iso-left"></div>
-        <div class="iso-face iso-right"></div>
-        <span class="iso-star">⭐</span>
+        <span class="dash-label">Random facts</span>
+        <h2>My <span class="marker heavy-word">Achievements</span></h2>
       </div>
       <div class="badge-card" data-reveal>
         <div class="badge-icon">⭐</div>
@@ -822,7 +889,6 @@
           <h3>5-Star Python Coder — HackerRank</h3>
           <p>Achieved a 5-Star Python rating by consistently solving programming and algorithmic challenges.</p>
         </div>
-      </div>
       </div>
     </div>
   </section>
